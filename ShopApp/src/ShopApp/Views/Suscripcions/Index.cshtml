@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ShopApp.Models.Suscripcion>
+
+@{
+    ViewData["Title"] = "Suscripciones";
+}
+
+<h1>Suscripciones</h1>
+
+<p>
+    <a asp-action="SelectNewsletterForSuscribe" asp-controller="NewsLetters" id="SelectNewsletterForSuscribe ">Nueva suscripcion</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.motivoSuscripcion[0].NewsLetter.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaCaducidad)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            
+            <td>
+                @for(int i=0 ; i < item.motivoSuscripcion.Count; i++)
+                    {
+                    @Html.DisplayFor(modelItem => item.motivoSuscripcion[i].NewsLetter.Marca.Nombre)
+                        }
+                
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaCaducidad)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar suscripcion</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detalles de la suscripcion</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar suscripcion</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,46 @@
+﻿@model ShopApp.Models.Retirada
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Retirada</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+            <div class="form-group">
+                <label asp-for="titulo" class="control-label"></label>
+                <input asp-for="titulo" class="form-control" />
+                <span asp-validation-for="titulo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="descripcion" class="control-label"></label>
+                <input asp-for="descripcion" class="form-control" />
+                <span asp-validation-for="descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fechaEfectiva" class="control-label"></label>
+                <input asp-for="fechaEfectiva" class="form-control" />
+                <span asp-validation-for="fechaEfectiva" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="gestorId" class="control-label"></label>
+                <select asp-for="gestorId" class="form-control" asp-items="ViewBag.gestorId"></select>
+                <span asp-validation-for="gestorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

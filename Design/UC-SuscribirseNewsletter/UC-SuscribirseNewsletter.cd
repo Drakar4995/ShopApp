@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ShopApp.Design.Categoria">
+    <Position X="9" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Categoria.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShopApp.Design.Cliente">
+    <Position X="1.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Cliente.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Suscripcions" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ShopApp.Design.UsuarioApp">
+    <Position X="1.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAQAAACIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UsuarioApp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShopApp.Design.Suscripcion">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAgACAAAABAAAAAAAAAAAAAAAAARA=</HashCode>
+      <FileName>Suscripcion.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Cliente" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="motivoSuscripcion" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ShopApp.Design.Marca">
+    <Position X="6.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Marca.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShopApp.Design.NewsLetter">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <AssociationLine Name="Marca" Type="ShopApp.Design.Marca" ManuallyRouted="true">
+      <Path>
+        <Point X="8.844" Y="2.824" />
+        <Point X="8.844" Y="2.927" />
+        <Point X="8.446" Y="2.927" />
+        <Point X="8.446" Y="3.344" />
+        <Point X="8.25" Y="3.344" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.192" Y="0.466" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="MotivoSuscripcions" Type="ShopApp.Design.MotivoSuscripcion" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.75" Y="0.938" />
+        <Point X="8.25" Y="0.938" />
+        <Point X="8.25" Y="0.938" />
+        <Point X="7.75" Y="0.938" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACABAAAAAAAAAggACAAAABABAAAAAAAAAAAAAAARA=</HashCode>
+      <FileName>NewsLetter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Marca" />
+      <Property Name="Categoria" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="MotivoSuscripcions" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ShopApp.Design.MotivoSuscripcion">
+    <Position X="6.25" Y="0.5" Width="1.5" />
+    <AssociationLine Name="NewsLetter" Type="ShopApp.Design.NewsLetter" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.75" Y="1.562" />
+        <Point X="8.25" Y="1.562" />
+        <Point X="8.25" Y="1.562" />
+        <Point X="8.75" Y="1.562" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAgCAgAAAgAAAAAAAAAAAAAAAEABA=</HashCode>
+      <FileName>MotivoSuscripcion.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Suscripcion" />
+      <Property Name="NewsLetter" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

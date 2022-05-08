@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ShopApp.Design.UsuarioApp" Collapsed="true">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAQAAACIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UsuarioApp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShopApp.Design.Cliente">
+    <Position X="0.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Cliente.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Compras" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ShopApp.Design.Compra">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <AssociationLine Name="ItemsCompra" Type="ShopApp.Design.ItemCompra">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.388" Y="-0.314" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAhBCAAEACAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Compra.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Cliente" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="ItemsCompra" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ShopApp.Design.ItemCompra">
+    <Position X="7.75" Y="0.75" Width="1.5" />
+    <AssociationLine Name="Prenda" Type="ShopApp.Design.Prenda">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.693" Y="0.035" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>IAACAAEAAAQAAAAAgAAAAAAIAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>ItemCompra.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Prenda" />
+      <Property Name="Compra" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ShopApp.Design.Prenda">
+    <Position X="11" Y="0.5" Width="1.75" />
+    <AssociationLine Name="Marca" Type="ShopApp.Models.Marca">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.093" Y="0.252" Height="0.182" Width="0.62" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>IAABABAAAAAAAAAAgAAAgIAAAAAAAAAABAAAIAAIAAA=</HashCode>
+      <FileName>Prenda.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Marca" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="PrendasCompradas" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ShopApp.Models.Marca">
+    <Position X="10.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAgAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Marca.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShopApp.Design.PayPal" Collapsed="true">
+    <Position X="0.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAgAAAAAACAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Paypal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShopApp.Design.MetodoPago">
+    <Position X="1.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MetodoPago.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShopApp.Design.TarjetaBancaria" Collapsed="true">
+    <Position X="2.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAQgAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TarjetaBancaria.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShopApp.Design.ItemDevolucion">
+    <Position X="7.75" Y="3.75" Width="1.75" />
+    <AssociationLine Name="ItemCompra" Type="ShopApp.Design.ItemCompra">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.055" Y="0.225" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAIIAAAAAAAQgACAgAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ItemDevolucion.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ItemCompra" />
+      <Property Name="Devolucion" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ShopApp.Design.Devolucion">
+    <Position X="4" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ABAAIAAAEACAkAAAgCAAAAAAgAAAAAIAAAAgAAAAAAA=</HashCode>
+      <FileName>Devolucion.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MetodoPago" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="ItemsDevolucion" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

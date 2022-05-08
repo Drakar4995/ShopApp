@@ -1,0 +1,54 @@
+﻿@model ShopApp.Models.Prenda
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Prenda</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrecioPrenda" class="control-label"></label>
+                <input asp-for="PrecioPrenda" class="form-control" />
+                <span asp-validation-for="PrecioPrenda" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaLanzamiento" class="control-label"></label>
+                <input asp-for="FechaLanzamiento" class="form-control" />
+                <span asp-validation-for="FechaLanzamiento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CantidadCompra" class="control-label"></label>
+                <input asp-for="CantidadCompra" class="form-control" />
+                <span asp-validation-for="CantidadCompra" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Marca.Nombre" class="control-label"></label>
+                <select asp-for="Marca.Nombre" class ="form-control" asp-items="ViewBag.marcaNombre"></select>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="isRetired" /> @Html.DisplayNameFor(model => model.isRetired)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

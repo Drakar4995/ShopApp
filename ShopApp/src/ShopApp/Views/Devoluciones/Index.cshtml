@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ShopApp.Models.Devolucion>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Devoluciones Realizadas</h1>
+
+<p>
+    <a asp-action="Index" asp-controller="Compras" id="botonRealizaDevolucion">Realiza una Devolucion</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaDevolucion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MetodoPago)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tipoRecogida)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemsDevolucion[0].ItemCompra.CompraID)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count() > 0)
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaDevolucion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MetodoDevolucion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tipoRecogida)
+                    </td>
+                    @if (item.ItemsDevolucion != null)
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ItemsDevolucion[0].ItemCompra.CompraID)
+                        </td>
+                    }
+
+
+                    <td>
+                        @*<a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |*@
+                        <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+            } }
+        else
+        {
+            <tr><td id="NoDevoluciones" colspan="3">No se han realizado Devoluciones</td></tr>
+        }
+
+
+    </tbody>
+</table>

@@ -1,0 +1,76 @@
+﻿@* model storing which data will be rendered by the View *@
+@model ShopApp.Models.NewsletterViewModels.SelectNewsletterForSuscribeViewModel;
+@{
+    ViewData["Title"] = "Select Newsletter";
+}
+
+<h2>Newsletter</h2>
+@* Form to fill in the filters to be used *@
+<form asp-controller="NewsLetter" class="form-horizontal">
+    <p>
+        <div>
+            <label asp-for="newsletterCategoria"></label>
+            <input asp-for="newsletterCategoria" size="50" />
+            <span asp-validation-for="newsletterCategoria" class="text-danger"></span>
+
+            <label asp-for="newslettermarcaselected"></label>
+            <select asp-for="newslettermarcaselected" asp-items="Model.marcaNombres">
+                <option value="">All</option>
+            </select>
+            <input id="filterbyTitleCategoria" asp-action="SelectNewsletterForSuscribe" type="submit" value="Filter" formmethod="get" />
+        </div>
+    </p>
+
+    <div id="ModelErrors" asp-validation-summary="All" class="text-danger">@TempData["Error"]</div>
+    
+    <div>@ViewBag.Mesaje</div>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th width="50%">
+                    
+                    Titulo
+                </th>
+                <th>
+                    Marca
+                </th>
+                <th>
+                    Categoria
+                </th>
+                <th align="center" width="10%">
+                    Select Newsletter
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @if (Model.Newsletters.Count() == 0)
+            {
+                <tr><td id="NoNewsletter" colspan="3">There are no Newsletter available</td></tr>
+            }
+            else
+            {
+                @foreach (var item in Model.Newsletters)
+                {
+                    <tr id="Newsletter_Title_@item.Titulo">
+                        <td width="50%">
+                            @Html.DisplayFor(modelItem => item.Titulo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Marca.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Categoria.Nombre)
+                        </td>
+                        <td align="center" width="10%">
+                            <input type="checkbox" name="IdsToAdd" id="Newsletter_@item.Id" value="@item.Id" class="form-control">
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <button id="nextButton" asp-action="SelectNewsLetterForSuscribe" type="submit" class="btn btn-primary" formmethod="post">Next</button>
+    <a asp-action="Index" asp-controller="Suscripcions" class="btn btn-default">Cancel</a>
+</form>

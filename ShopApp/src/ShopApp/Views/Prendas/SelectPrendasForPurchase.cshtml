@@ -1,0 +1,78 @@
+﻿@* model storing which data will be rendered by the View *@
+@model ShopApp.Models.PrendaViewModels.SelectPrendasForPurchaseViewModel
+@{
+    ViewData["Title"] = "Selecciona Prenda";
+}
+
+<h2>Selecciona tus Prendas</h2>
+@* Form to fill in the filters to be used *@
+<form asp-controller="Prendas" class="form-horizontal">
+      
+    <p>
+        <div>
+            <label asp-for="prendaNombre"></label>
+            <input asp-for="prendaNombre" size="50" />
+            <span asp-validation-for="prendaNombre" class="text-danger"></span>
+
+            <label asp-for="prendaPrecio"></label>
+            <input asp-for="prendaPrecio" size="50" />
+            <span asp-validation-for="prendaPrecio" class="text-danger"></span>
+
+            <label asp-for="prendaMarcaSeleccionada"></label>
+            <select asp-for="prendaMarcaSeleccionada" asp-items="Model.Marcas">
+                <option value="">All</option>
+            </select>
+            <input id="filterbyNombrePrecioMarca" asp-action="SelectPrendasForPurchase" type="submit" value="Filtrar" formmethod="get" />
+        </div>
+    </p>
+
+    <div id="ModelErrors" asp-validation-summary="All" class="text-danger">@TempData["Error"]</div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th width="50%">
+                    Nombre
+                </th>
+                <th>
+                    Precio
+                </th>
+                <th>
+                    Marca
+                </th>
+                <th align="center" width="10%">
+                    Selecciona Prenda
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Prendas.Count() == 0)
+            {
+                <tr><td id="NoPrendas" colspan="3">Lo sentimos, no hay prendas disponibles</td></tr>
+            }
+            else
+            {
+                @foreach (var item in Model.Prendas)
+                {
+                    <tr id="Prenda_Nombre_@item.Nombre">
+                        <td width="50%">
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PrecioPrenda)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Marca.Nombre)
+                        </td>
+                        <td align="center" width="10%">
+                            <input type="checkbox" name="IdsToAdd" id="Prenda_@item.PrendaID" value="@item.PrendaID" class="form-control">
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <button id="nextButton" asp-action="SelectPrendasForPurchase" type="submit" class="btn btn-primary" formmethod="post">Next</button>
+    <a asp-action="Index" class="btn btn-default">Cancel</a>
+</form>
+

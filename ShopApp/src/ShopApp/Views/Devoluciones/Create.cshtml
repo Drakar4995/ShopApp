@@ -1,0 +1,253 @@
+﻿ @model ShopApp.Models.DevolucionViewModels.CreateDevolucionViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Realiza tus Devoluciones</h1>
+<form asp-action="Create" method="post">
+
+    <div class="form-horizontal">
+        
+        <hr />
+        <div class="container">
+            <div class="row">
+                <div class="col-2 font-weight-bold">
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </div>
+                <div class="col-8">
+                    @Html.DisplayFor(model => model.Nombre)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2 font-weight-bold">
+                    @Html.DisplayNameFor(model => model.PrimerApellido)
+                </div>
+                <div class="col-8">
+                    @Html.DisplayFor(model => model.PrimerApellido)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2 font-weight-bold">
+                    @Html.DisplayNameFor(model => model.SegundoApellido)
+                </div>
+                <div class="col-8">
+                    @Html.DisplayFor(model => model.SegundoApellido)
+                </div>
+            </div>
+            @*
+           <div class="form-group row">
+            <label asp-for="Direccion" class="col-md-2 control-label font-weight-bold"></label>
+            <span class="col-md-8">
+                <input asp-for="Direccion" class="form-control" height="20" />
+                <span asp-validation-for="Direccion" class="text-danger"></span>
+            </span>
+        </div>
+            *@
+
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default ">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <label for='r13' style='width: 350px;'>
+                            @* <input type='radio' id='r11' name='PaymentMethod' value='CreditCard' required checked /> Credit Card*@
+                            <input type='radio' id='r13' asp-for='tipoRecogida' value='Correos' required /> Correos
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"></a>
+
+                        </label>
+                    </h4>
+                </div>
+
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class=panel-title>
+                        <label for='r14' style='width: 350px;'>
+                            @*<input type='radio' id='r12' name='PaymentMethod' value='PayPal' required /> PayPal*@
+                            <input type='radio' id='r14' asp-for='tipoRecogida' value='Domicilio' required /> Domicilio
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"></a>
+                        </label>
+                    </h4>
+                </div>
+                <div id="collapseFour" class="panel-collapse collapse">
+                    <div class="panel-body row">
+                        <div class="col-md-4">
+                            <label asp-for="Direccion" class="control-label"></label>
+                            <input asp-for="Direccion" class="form-control" />
+                            <span asp-validation-for="Direccion" class="text-danger"></span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <span asp-validation-for="tipoRecogida" class="text-danger"></span>
+        </div>
+
+        </div>
+
+        <input asp-for="idCliente" type="hidden" class="form-control" />
+
+
+        <div id="ModelErrors" asp-validation-summary="ModelOnly" class="text-danger">
+        </div>
+        <span class="col-md-10">
+            <span asp-validation-for="ItemsDevolucion" class="text-danger"></span>
+        </span>
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th width="20%">
+                        Nombre
+                    </th>
+                    <th width="20%">
+                        Marca
+                    </th>
+                    <th width="20%">
+                        Cantidad
+                    </th>
+                    <th width="20%">
+                        Precio
+                    </th>
+                    <th>
+                        Motivo de la Devolucion
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.ItemsDevolucion.Count() == 0)
+                {
+                    <tr><td colspan="3">There are no movies available</td></tr>
+                }
+                else
+                {
+                     
+                    @for (int i = 0; i < Model.ItemsDevolucion.Count; i++)
+                    {
+                        <tr>
+                    
+                <td>
+                    @Html.DisplayFor(modelItem => Model.ItemsDevolucion[i].nombrePrenda)
+                </td>
+                <td>
+                    <div class="form-group">
+                        @Html.DisplayFor(modelItem => Model.ItemsDevolucion[i].nombreMarca)
+
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @Html.DisplayFor(modelItem => Model.ItemsDevolucion[i].cantidad)
+
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group"> 
+                        @Html.DisplayFor(modelItem => Model.ItemsDevolucion[i].precio)
+
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <input asp-for="ItemsDevolucion[i].ItemCompraID" type="hidden" class="form-control" />
+                        <input asp-for="ItemsDevolucion[i].CompraId" type="hidden" class="form-control" />
+                        <input asp-for="ItemsDevolucion[i].nombrePrenda" type="hidden" class="form-control" />
+                        <input asp-for="ItemsDevolucion[i].cantidad" type="hidden" class="form-control" />
+                        <input asp-for="ItemsDevolucion[i].precio" type="hidden" class="form-control" />
+                        <input asp-for="ItemsDevolucion[i].nombreMarca" type="hidden" class="form-control" />
+                        <span>
+                            <input asp-for="ItemsDevolucion[i].motivoDevolucion" id="itemDevolucion_@Model.ItemsDevolucion[i].ItemCompraID" class="form-control" />
+                            <span asp-validation-for="ItemsDevolucion[i].motivoDevolucion" class="text-danger"></span>
+                        </span>
+                        @*<span asp-validation-for="ItemsDevolucion[i].cantidad" class="text-danger" />*@
+
+
+                    </div>
+
+                </td>
+            </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+        @* this code needs the script defined in site.js *@
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <label for='r11' style='width: 350px;'>
+                        @* <input type='radio' id='r11' name='PaymentMethod' value='CreditCard' required checked /> Credit Card*@
+                        <input type='radio' id='r11' asp-for='PaymentMethod' value='CreditCard' required /> Credit Card
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"></a>
+                    </label>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse ">
+                <div class="panel-body row">
+                    <div class="col-md-4">
+                        <label asp-for="CreditCardNumber" class="control-label"></label>
+                        <input asp-for="CreditCardNumber" class="form-control" size="20" />
+                        <span asp-validation-for="CreditCardNumber" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-1">
+                        <label asp-for="CCV" class="control-label"></label>
+                        <input asp-for="CCV" class="form-control" size="3" />
+                        <span asp-validation-for="CCV" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-2">
+                        <label asp-for="ExpirationDate" class="control-label"></label>
+                        <input asp-for="ExpirationDate" class="form-control" />
+                        <span asp-validation-for="ExpirationDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class=panel-title>
+                    <label for='r12' style='width: 350px;'>
+                        @*<input type='radio' id='r12' name='PaymentMethod' value='PayPal' required /> PayPal*@
+                        <input type='radio' id='r12' asp-for='PaymentMethod' value='PayPal' required /> PayPal
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"></a>
+                    </label>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body row">
+                    <div class="col-md-4">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-1">
+                        <label asp-for="Prefix" class="control-label"></label>
+                        <input asp-for="Prefix" class="form-control" />
+                        <span asp-validation-for="Prefix" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-2">
+                        <label asp-for="Phone" class="control-label"></label>
+                        <input asp-for="Phone" class="form-control" />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <span asp-validation-for="PaymentMethod" class="text-danger"></span>
+    </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" id="CreateButton" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="SelectPrendasForDevolucion" asp-controller="ItemCompras" asp-route-id="@Model.ItemsDevolucion[0].CompraId">Back to List</a>
+</div>
+
+@section Scripts {
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

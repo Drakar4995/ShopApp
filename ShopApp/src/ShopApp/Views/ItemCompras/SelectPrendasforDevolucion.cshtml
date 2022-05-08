@@ -1,0 +1,81 @@
+﻿    @* model storing which data will be rendered by the View *@
+@model ShopApp.Models.ItemCompraViewModels.SelectPrendasForDevolucionViewModel 
+@{
+    ViewData["Title"] = "Select Prendas";
+}
+
+<h2>Selecciona Prendas a Devolver</h2>
+@* Form to fill in the filters to be used *@
+<form asp-controller="Compras" class="form-horizontal">
+    <input asp-for="id" type="hidden" class="form-control" />
+    <p>
+        <div>
+            <label asp-for="nombrePrenda"></label>
+            <input asp-for="nombrePrenda"  size="50" />
+            <span asp-validation-for="nombrePrenda" class="text-danger"></span>
+
+
+
+            <label asp-for="marcaSelect"></label>
+            <select asp-for="marcaSelect" asp-items="Model.Marcas">
+                <option value="">All</option>
+            </select>
+            <input id="botonFiltrar" asp-action="SelectPrendasForDevolucion" type="submit" value="Filtrar" formmethod="get" />
+        </div>
+    </p>
+
+    <div id="ModelErrors" asp-validation-summary="All" class="text-danger">@TempData["Error"]</div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th width="20%">
+                    Nombre de Articulo
+                </th>
+                <th width="20%">
+                    Cantidad
+                </th>
+                <th width="20%">
+                    Marca
+                </th>
+                <th width="20%">
+                    Precio del Articulo
+                </th>
+                <th align="center" width="20%">
+                    Select Articulo
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.ItemCompras.Count() == 0)
+            {
+                <tr><td id="NoArticulos" colspan="3">No hay Articulos disponibles</td></tr>
+            }
+            else
+            {
+                foreach (var item in Model.ItemCompras)
+                {
+                    <tr id="Id_Pedido_@item.Id">
+                        <td width="30%">
+                            @Html.DisplayFor(modelItem => item.Prenda.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cantidad)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Prenda.Marca.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Prenda.PrecioPrenda)
+                        </td>
+                        <td align="center" width="10%">
+                            <input type="checkbox" name="IdsToAdd" id="ItemCompras_@item.Id" value="@item.Id" class="form-control">
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <button id="nextButton" asp-action="SelectPrendasforDevolucion" type="submit" class="btn btn-primary" formmethod="post">Next</button>
+    <a asp-action="Index" asp-controller="Compras" class="btn btn-default">Cancel</a>
+</form>

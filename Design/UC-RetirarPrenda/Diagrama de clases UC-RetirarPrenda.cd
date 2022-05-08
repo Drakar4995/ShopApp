@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ShopApp.Design.Gestor">
+    <Position X="1" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Gestor.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Retiradas" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ShopApp.Design.UsuarioApp">
+    <Position X="1" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAQAAACIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UsuarioApp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShopApp.Design.Retirada">
+    <Position X="3.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAEAAAAAAIAAAAACAARAEAAAAgA=</HashCode>
+      <FileName>Retirada.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Gestor" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="motivosRetirada" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ShopApp.Design.MotivoRetirada">
+    <Position X="6.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAggAEACAAAAAAAAAAAAAAAAIAAAgA=</HashCode>
+      <FileName>MotivoRetirada.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Retirada" />
+      <Property Name="Prenda" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ShopApp.Design.Prenda">
+    <Position X="9.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAABABAAAAAAAAAAgAAAgIAAAAAAAAAABAAAIAAIAAA=</HashCode>
+      <FileName>Prenda.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Marca" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ShopApp.Models.Marca">
+    <Position X="9" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAgAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Marca.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

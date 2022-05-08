@@ -1,0 +1,184 @@
+﻿@model ShopApp.Models.SuscripcionsViewModels.SuscipcionCreateViewModel
+
+@{ViewData["Title"] = "Create"; }
+
+
+
+
+<h2>Completar suscripcion</h2>
+
+
+<form asp-action="Create" method="post">
+
+    <div class="form-horizontal">
+        <h4>Rellene el formulario</h4>
+        <hr />
+        <div class="container">
+            <div class="row">
+            </div>
+            <div class="form-group row">
+                <label asp-for="Titulo" class="col-md-2 control-label font-weight-bold"></label>
+                <span class="col-md-8">
+                    <input asp-for="Titulo" class="form-control" height="20" />
+                    <span asp-validation-for="Titulo" class="text-danger"></span>
+                </span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Descripcion" class="col-md-2 control-label font-weight-bold"></label>
+                <span class="col-md-8">
+                    <input asp-for="Descripcion" class="form-control" height="20" />
+                    <span asp-validation-for="Descripcion" class="text-danger"></span>
+                </span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Motivo" class="col-md-2 control-label font-weight-bold"></label>
+                <span class="col-md-8">
+                    <input asp-for="Motivo" class="form-control" height="20" />
+                    <span asp-validation-for="Motivo" class="text-danger"></span>
+                </span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="FechaCaducidad" class="col-md-2 control-label font-weight-bold"></label>
+                <span class="col-md-8">
+                    <input asp-for="FechaCaducidad" class="form-control" height="20" />
+                    <span asp-validation-for="FechaCaducidad" class="text-danger"></span>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th width="50%">
+                            Marcas en las que esta interesado (Opcional)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @if (Model.Marca.Count() == 0)
+                    {
+                        <tr><td id="NoPrenda" colspan="3">There are no Newsletter available</td></tr>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.Marca)
+                        {
+                            <tr id="Prenda_Nombre_@item.Nombre">
+                                <td width="50%">
+                                    @Html.DisplayFor(modelitem => item.Nombre)
+                                </td>
+                                <td align="center" width="30%">
+                                    <input type="checkbox" style="width:20px;height:20px;" required />
+                                    <span asp-validation-for="Marca" class="text-danger"></span>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th width="50%">
+                            Prendas en las que esta interesado (Opcional)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @if (Model.Prendas.Count() == 0)
+                    {
+                        <tr><td id="NoPrenda" colspan="3">There are no Newsletter available</td></tr>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.Prendas)
+                        {
+                            <tr id="Prenda_Nombre_@item.Nombre">
+                                <td width="50%">
+                                    @Html.DisplayFor(modelitem => item.Nombre)
+                                </td>
+                                <td align="center" width="30%">
+                                    <input type="checkbox" style="width:20px;height:20px;" />
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+                <input asp-for="ClienteId" type="hidden" class="form-control" />
+
+
+                <div id="ModelErrors" asp-validation-summary="ModelOnly" class="text-danger">
+                </div>
+                <span class="col-md-10">
+                    <span asp-validation-for="MotivoSuscripcions" class="text-danger"></span>
+                </span>
+                <table class="table">
+
+                    <thead>
+                        <tr>
+                            <th width="50%">
+                                Titulo de la Newsletter
+                            </th>
+                            <th width="20%">
+                                Categoria
+                            </th>
+                            <th width="20%">
+                                Marca
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.MotivoSuscripcions.Count() == 0)
+                        {
+                            <tr><td colspan="3">No hay prendas disponibles</td></tr>
+                        }
+                        else
+                        {
+                            @for (int i = 0; i < Model.MotivoSuscripcions.Count; i++)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Model.MotivoSuscripcions[i].TituloNewssletter)
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            @Html.DisplayFor(modelItem => Model.MotivoSuscripcions[i].Categoria)
+
+                                        </div>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Model.MotivoSuscripcions[i].Marca)
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <input asp-for="MotivoSuscripcions[i].NewsletterId" type="hidden" class="form-control" />
+                                            <input asp-for="MotivoSuscripcions[i].Categoria" type="hidden" class="form-control" />
+                                            <input asp-for="MotivoSuscripcions[i].TituloNewssletter" type="hidden" class="form-control" />
+                                            <input asp-for="MotivoSuscripcions[i].Marca" type="hidden" class="form-control" />
+
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            }}
+                    </tbody>
+                </table>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" id="CreateButton" value="Create" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+</form>
+
+<div>
+    <a asp-action="SelectNewsletterForSuscribe" asp-controller="NewsLetters">Back to List</a>
+</div>
+
+@section Scripts {
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

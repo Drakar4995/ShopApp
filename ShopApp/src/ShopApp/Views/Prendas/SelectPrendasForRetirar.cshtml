@@ -1,0 +1,80 @@
+﻿@* model storing which data will be rendered by the View *@
+@model ShopApp.Models.PrendaViewModels.SelectPrendasForRetirarViewModel;
+@{
+    ViewData["Title"] = "Select Prenda";
+}
+
+<h2>Retirar Prenda</h2>
+@* Form to fill in the filters to be used *@
+<form asp-controller="Prendas" class="form-horizontal">
+    <p>
+        <div>
+            <label asp-for="prendaVentasSemanales"></label>
+            <input asp-for="prendaVentasSemanales" size="50" />
+            <span asp-validation-for="prendaVentasSemanales" class="text-danger"></span>
+                
+            <label asp-for="prendaMarcaSelected"></label>
+            <select asp-for="prendaMarcaSelected" asp-items="Model.Marcas">
+                <option value="">All</option>
+            </select>
+            <input id="filterbyVentasSemanalesMarca" asp-action="SelectPrendasForRetirar" type="submit" value="Filtrar" formmethod="get"/>
+        </div>
+    </p>
+
+<div id="ModelErrors" asp-validation-summary="All" class="text-danger">@TempData["Error"]</div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th width="50%">
+                    Nombre
+                </th>
+                <th>
+                    Marca
+                </th>
+                <th>
+                    Precio
+                </th>
+                <th>
+                    Ventas Semanales
+                </th>
+                <th align="center" width="10%">
+                    Select Prenda
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Prendas.Count() == 0)
+            {
+                <tr><td id="NoPrenda" colspan="3">No hay prendas disponibles</td></tr>
+            }
+            else
+            {
+                
+                @foreach (var item in Model.Prendas)
+                {
+        <tr id="Newsletter_Title_@item.Nombre">
+            <td width="50%">
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioPrenda)
+            </td>
+            <td>
+                @ViewData[item.PrendaID.ToString()]
+                
+            </td>
+            <td align="center" width="10%">
+                <input type="checkbox" name="IdsToAdd" id="Prenda_@item.PrendaID" value="@item.PrendaID" class="form-control">
+            </td>
+        </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <button id="nextButton" asp-action="SelectPrendasForRetirar" type="submit" class="btn btn-primary" formmethod="post">Next</button>
+    <a asp-action="Index" asp-controller="Retiradas" class="btn btn-default">Cancel</a>
+</form>

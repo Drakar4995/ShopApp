@@ -1,0 +1,129 @@
+﻿@model ShopApp.Models.RetiradaViewModels.RetiradaCreateViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+
+
+
+
+<form asp-action="Create" method="post">
+    <div class="form-horizontal">
+        <h4>Retirada</h4>
+        <hr />
+        <div class="container">
+            <div class="form-group row">
+                <div class="col-md-2 control-label font-weight-bold">
+                    @Html.DisplayNameFor(model => model.Titulo)
+                </div>
+                <div class="col-8">
+                    @Html.DisplayFor(model => model.Titulo)
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label asp-for="Descripcion" class="col-md-2 control-label font-weight-bold"></label>
+                <span class="col-md-8">
+                    <input asp-for="Descripcion" class="form-control" height="20" />
+                    <span asp-validation-for="Descripcion" class="text-danger"></span>
+                </span>
+            </div>
+
+            <div class="form-group row">
+                <label asp-for="FechaEfectiva" class="col-md-2 control-label font-weight-bold"></label>
+                <span class="col-md-8">
+                    <input asp-for="FechaEfectiva" class="form-control" height="20" />
+                    <span asp-validation-for="FechaEfectiva" class="text-danger"></span>
+                </span>
+            </div>
+        </div>
+
+        <input asp-for="GestorId" type="hidden" class="form-control" />
+
+
+        <div id="ModelErrors" asp-validation-summary="ModelOnly" class="text-danger">
+        </div>
+        <span class="col-md-10">
+            <span asp-validation-for="MotivosRetirada" class="text-danger"></span>
+        </span>
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th width="20%">
+                        Nombre
+                    </th>
+                    <th width="20%">
+                        Marca
+                    </th>
+                    <th>
+                        Precio
+                    </th>
+                    <th>
+                        Ventas Semanales
+                    </th>
+                    <th>
+                        Motivo Retirada
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.MotivosRetirada.Count() == 0)
+                {
+                    <tr><td colspan="3">No hay prendas disponibles</td></tr>
+                }
+                else
+                {
+                    @for (int i = 0; i < Model.MotivosRetirada.Count; i++)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.MotivosRetirada[i].Nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.MotivosRetirada[i].Marca)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.MotivosRetirada[i].Precio)
+                            </td>
+                            <td>
+                                @ViewData[Model.MotivosRetirada[i].PrendaID.ToString()]
+
+                            </td>
+
+                            <td>
+                                <div class="form-group">
+                                    <input asp-for="MotivosRetirada[i].PrendaID" type="hidden" class="form-control" />
+                                    <input asp-for="MotivosRetirada[i].Precio" type="hidden" class="form-control" />
+                                    <input asp-for="MotivosRetirada[i].Nombre" type="hidden" class="form-control" />
+                                    <input asp-for="MotivosRetirada[i].VentasSemanales" type="hidden" class="form-control" />
+                                    <input asp-for="MotivosRetirada[i].Marca" type="hidden" class="form-control" />
+                                    <input asp-for="MotivosRetirada[i].Descripcion" id="Movie_Quantity_@Model.MotivosRetirada[i].PrendaID" class="form-control" />
+                                    <span asp-validation-for="MotivosRetirada[i].Descripcion" class="text-danger" />
+
+                                </div>
+
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" id="CreateButton" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+<div>
+    <a asp-action="SelectPrendasForRetirar" asp-controller="Prendas">Back to List</a>
+</div>
+
+@section Scripts {
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

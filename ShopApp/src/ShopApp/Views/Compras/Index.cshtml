@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ShopApp.Models.Compra>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Compras Realizadas</h1>
+
+<p>
+    <a asp-action="SelectPrendasForPurchase" id = "RealizarCompra" asp-controller="Prendas">Realiza una Compra</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaCompra)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemsCompra)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecioTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count() > 0)
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaCompra)
+                    </td>
+                    <td>
+                        @ViewData[item.Id.ToString()]
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PrecioTotal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                        <a asp-action="SelectPrendasForDevolucion" asp-controller="ItemCompras" asp-route-id="@item.Id" id="CompraId_@item.Id">Hacer devolucion</a>
+                    </td>
+                </tr>
+            }
+
+        }else { <tr><td id="NoCompras" colspan="3">No se han realizado Compras</td></tr>}
+    </tbody>
+</table>
