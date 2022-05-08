@@ -1,5 +1,5 @@
 # ShopApp
-Proyecto de Ingenieria de Software 2, ESIIAB
+Proyecto de Ingenieria de Software II
 El proyecto trata de realizar una tienda de ropa
 
 Como cliente podras:
@@ -7,6 +7,13 @@ Como cliente podras:
 -Devolver prendas de un pedido.
 -Suscribirte a una Newsletter.
 
-Como administrador:
+Como Gestor:
 -Retirar prendas de la tienda.
 
+Credenciales
+Cliente: 
+  Usuario: peter@uclm.com
+  Contraseña: OtherPass12$
+Administrador:
+  Usuario: joseAngel@uclm.com 
+  Contraseña: APassword1234%
